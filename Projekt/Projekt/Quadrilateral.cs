@@ -2,7 +2,6 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
-using System.Collections.Generic;
 using Microsoft.SqlServer.Server;
 
 [Serializable]
@@ -104,6 +103,53 @@ public struct Quadrilateral : INullable
             area += (points[i].getX() * points[i+1].getY()) - (points[i + 1].getX() * points[i].getY());
         }
         return Math.Abs(area) / 2;
+    }
+
+    private static double DotProduct(double Ax, double Ay, double Bx, double By, double Cx, double Cy)
+    {
+        double BAx = Ax - Bx;
+        double BAy = Ay - By;
+        double BCx = Cx - Bx;
+        double BCy = Cy - By;
+
+        return (BAx * BCx + BAy * BCy);
+    }
+
+    private static double CrossProductLength(double Ax, double Ay, double Bx, double By, double Cx, double Cy)
+    {
+        double BAx = Ax - Bx;
+        double BAy = Ay - By;
+        double BCx = Cx - Bx;
+        double BCy = Cy - By;
+
+        return (BAx * BCy - BAy * BCx);
+    }
+
+    public static double GetAngle(double Ax, double Ay, double Bx, double By, double Cx, double Cy)
+    {
+        double dotProduct = DotProduct(Ax, Ay, Bx, By, Cx, Cy);
+        double crossProduct = CrossProductLength(Ax, Ay, Bx, By, Cx, Cy);
+
+        return (double)Math.Atan2(crossProduct, dotProduct);
+    }
+
+    public bool IsInside(Point P)
+    {
+        Point[] points = new Point[4];
+        points[0] = A;
+        points[1] = B;
+        points[2] = C;
+        points[3] = D;
+
+        double totalAngle = GetAngle(points[3].getX(), points[3].getY(), P.getX(), P.getY(), points[0].getX(), points[0].getY());
+
+        for (int i = 0; i < 3; i++) 
+        {
+            totalAngle += GetAngle(points[i].getX(), points[i].getY(), P.getX(), P.getY(), points[i + 1].getX(), points[i + 1].getY());
+        }
+
+        if (Math.Abs(totalAngle) > 1) return true;
+        else return false;
     }
 
     private Point A;
