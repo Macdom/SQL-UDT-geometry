@@ -89,6 +89,22 @@ public struct Quadrilateral : INullable
         return D.ToString();
     }
 
+    public double Area() 
+    {
+        Point[] points = new Point[5];
+        points[0] = A;
+        points[1] = B;
+        points[2] = C;
+        points[3] = D;
+        points[4] = A;
+
+        double area = 0;
+        for (int i = 0; i < 4; i++)
+        {
+            area += (points[i].getX() * points[i+1].getY()) - (points[i + 1].getX() * points[i].getY());
+        }
+        return Math.Abs(area) / 2;
+    }
 
     private Point A;
     private Point B;
