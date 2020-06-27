@@ -1,2 +1,2 @@
 # SQL-UDT-geometry
-point and polygon types, implementation and comparison
+point and quadrilateral types, implementation and comparison
