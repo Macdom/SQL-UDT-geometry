@@ -28,17 +28,10 @@ public struct Point : INullable
         if (s.IsNull)
             return Null;
         Point u = new Point();
-        //try
-        //{
             string[] coords = s.Value.Split(' ');
 
             u.m_x = double.Parse(coords[0]);
             u.m_y = double.Parse(coords[1]);
-        //}
-        /*catch (Exception e)
-        {
-            throw new Exception("Nieprawidłowe współrzędne");
-        }*/
         return u;
     }
 
@@ -58,6 +51,16 @@ public struct Point : INullable
     public double getY()
     {
         return (this.m_y);
+    }
+
+    public void setX(double x)
+    {
+        m_x = x;
+    }
+
+    public void setY(double y)
+    {
+        m_y = y;
     }
 
     public double distance(Point a)

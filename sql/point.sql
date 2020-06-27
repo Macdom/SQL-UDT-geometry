@@ -6,7 +6,6 @@ DECLARE @B [dbo].[Point]
 
 --trzeba u¿ywaæ przecinków a nie kropek? dziwne
 
---SET @A = '5 3'
 SET @A = '5,5 0'
 SELECT @A.ToString()
 
