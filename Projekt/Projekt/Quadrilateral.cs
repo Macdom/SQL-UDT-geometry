@@ -46,24 +46,16 @@ public struct Quadrilateral : INullable
         string[] pointString = s.Value.Split('|');
         
         string[] a = pointString[0].Split(' ');
-        u.A = new Point();
-        u.A.setX(double.Parse(a[0]));
-        u.A.setY(double.Parse(a[1]));
+        u.A = new Point(double.Parse(a[0]), double.Parse(a[1]));
 
         string[] b = pointString[1].Split(' ');
-        u.A = new Point();
-        u.B.setX(double.Parse(b[0]));
-        u.B.setY(double.Parse(b[1]));
+        u.B = new Point(double.Parse(b[0]), double.Parse(b[1]));
 
         string[] c = pointString[2].Split(' ');
-        u.C = new Point();
-        u.C.setX(double.Parse(c[0]));
-        u.C.setY(double.Parse(c[1]));
+        u.C = new Point(double.Parse(c[0]), double.Parse(c[1]));
 
         string[] d = pointString[3].Split(' ');
-        u.D = new Point();
-        u.D.setX(double.Parse(d[0]));
-        u.D.setY(double.Parse(d[1]));
+        u.D = new Point(double.Parse(d[0]), double.Parse(d[1]));
 
         return u;
     }

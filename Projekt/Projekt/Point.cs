@@ -23,6 +23,14 @@ public struct Point : INullable
         }
     }
 
+    public Point(double x, double y)
+    {
+        m_Null = false;
+
+        m_x = x;
+        m_y = y;
+    }
+
     public static Point Parse(SqlString s)
     {
         if (s.IsNull)
@@ -51,16 +59,6 @@ public struct Point : INullable
     public double getY()
     {
         return (this.m_y);
-    }
-
-    public void setX(double x)
-    {
-        m_x = x;
-    }
-
-    public void setY(double y)
-    {
-        m_y = y;
     }
 
     public double distance(Point a)
